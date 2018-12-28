@@ -460,6 +460,9 @@ export class Connection {
             if (target instanceof EntitySchema) {
                 return metadata.name === target.options.name;
             }
+            if (typeof target === 'function' && typeof metadata.target === 'function') {
+                return target.toString() === metadata.target.toString();
+            }
             if (typeof target === "string") {
                 if (target.indexOf(".") !== -1) {
                     return metadata.tablePath === target;
